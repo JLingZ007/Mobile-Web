@@ -1,1 +1,1 @@
-ายวิชา SC310006 Mobile and Web Application Development
+SC310006 Mobile and Web Application Development

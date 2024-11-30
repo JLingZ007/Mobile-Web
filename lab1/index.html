@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบปรนัย</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div id="app" class="bg-white p-6 rounded shadow-md max-w-3xl w-full">
+        <h1 class="text-2xl font-bold mb-4">แบบทดสอบปรนัย</h1>
+        <p class="mb-6">กรุณาตอบคำถามทั้งหมดด้านล่าง จากนั้นกดปุ่ม "ตรวจคำตอบ"</p>
+        <form id="quiz-form">
+            <div id="quiz-container">
+                <!-- คำถามทั้งหมดจะถูกแสดงที่นี่ -->
+            </div>
+            <button id="submit-btn" type="submit" class="mt-6 bg-green-500 text-white px-4 py-2 rounded">ตรวจคำตอบ</button>
+        </form>
+        <div id="result-screen" class="hidden mt-6">
+            <h2 class="text-xl font-bold">คะแนนของคุณ:</h2>
+            <p id="score" class="text-lg"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

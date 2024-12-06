@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบทดสอบความรู้ทั่วไป</title>
+    <!-- Vuetify CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@3.1.0/dist/vuetify.min.css" rel="stylesheet">
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.min.js"></script>
+    <!-- Vuetify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.1.0/dist/vuetify.min.js"></script>
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <style>
+        /* Minimal Style for Radio Buttons */
+        .custom-radio {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .custom-radio input[type="radio"] {
+            display: none;
+        }
+
+        .custom-radio label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        .custom-radio input[type="radio"]:checked + label {
+            background-color: #007bff; /* สีน้ำเงิน */
+            color: white;
+            border-color: #007bff;
+        }
+
+        .custom-radio label:hover {
+            background-color: #e0e0e0;
+        }
+
+        .custom-radio input[type="radio"]:disabled + label {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Optional: Style the container and other elements for clarity */
+        .quiz-container {
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <v-app>
+        <v-main class="d-flex justify-center align-center">
+            <v-container max-width="800">
+                <!-- หน้าเริ่มต้น -->
+                <v-card v-if="!quizStarted" class="pa-4">
+                    <v-card-title class="text-h4 text-center">แบบทดสอบความรู้ทั่วไป</v-card-title>
+                    <v-card-text class="text-center">
+                        ยินดีต้อนรับ! กดปุ่ม "เริ่มทำแบบทดสอบ" เพื่อเริ่มต้น
+                    </v-card-text>
+                    <v-card-actions class="justify-center">
+                        <v-btn color="primary" @click="startQuiz">เริ่มทำแบบทดสอบ</v-btn>
+                    </v-card-actions>
+                </v-card>
+
+                <!-- แบบทดสอบ -->
+                <v-card v-else-if="!showScore" class="pa-4">
+                    <v-card-title class="text-h5">แบบทดสอบความรู้ทั่วไป</v-card-title>
+                    <v-divider class="my-3"></v-divider>
+                    <v-form @submit.prevent="submitQuiz">
+                        <v-container>
+                            <v-row v-for="(question, index) in questions" :key="index" class="mb-4">
+                                <v-col cols="12">
+                                    <p class="quiz-question"><strong>คำถาม {{ index + 1 }}:</strong> {{ question.question }}</p>
+                                    <!-- ใช้ radio button แบบ HTML พื้นฐาน -->
+                                    <div class="quiz-container">
+                                        <div v-for="(choice, i) in question.choices" :key="i" class="custom-radio">
+                                            <input 
+                                                type="radio" 
+                                                :id="'q' + index + '-choice' + i" 
+                                                :name="'q' + index" 
+                                                :value="i" 
+                                                v-model="answers[index]" 
+                                                :disabled="showScore"
+                                            >
+                                            <label :for="'q' + index + '-choice' + i">{{ choice }}</label>
+                                        </div>
+                                    </div>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                        
+                        <v-divider class="my-3"></v-divider>
+                        <v-card-actions class="justify-center">
+                            <v-btn color="success" type="submit">ตรวจคำตอบ</v-btn>
+                            <v-btn color="secondary" @click="goToStart" class="ml-2">กลับไปหน้าแรก</v-btn>
+                        </v-card-actions>
+                    </v-form>
+                </v-card>
+
+                <!-- แสดงคะแนน -->
+                <v-card v-else class="pa-4">
+                    <v-card-title class="text-h5">ผลคะแนนของคุณ</v-card-title>
+                    <v-card-text class="text-center text-h4 my-4">
+                        {{ score }} / {{ questions.length }}
+                    </v-card-text>
+                    <v-card-actions class="justify-center">
+                        <v-btn color="primary" @click="goToStart">กลับไปหน้าแรก</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-container>
+        </v-main>
+    </v-app>
+</div>
+
+<script>
+    const { createApp } = Vue;
+    const { createVuetify } = Vuetify;
+
+    const vuetify = createVuetify();
+
+    createApp({
+        data() {
+            return {
+                quizStarted: false,
+                questions: [],
+                answers: [],
+                showScore: false,
+                score: 0,
+            };
+        },
+        methods: {
+            async fetchQuestions() {
+                try {
+                    const response = await fetch('questions.json');
+                    this.questions = await response.json();
+                    this.answers = new Array(this.questions.length).fill(null);
+                } catch (error) {
+                    console.error('Error fetching questions:', error);
+                }
+            },
+            startQuiz() {
+                this.quizStarted = true;
+            },
+            submitQuiz() {
+                // ตรวจสอบว่าได้ตอบทุกคำถามหรือไม่
+                if (this.answers.includes(null)) {
+                    alert("กรุณาตอบทุกคำถามก่อนตรวจคำตอบ!");
+                } else {
+                    this.score = this.questions.reduce((total, question, index) => {
+                        return total + (this.answers[index] == question.answer ? 1 : 0);
+                    }, 0);
+                    this.showScore = true;
+                }
+            },
+            goToStart() {
+                this.quizStarted = false;
+                this.showScore = false;
+                this.answers = [];
+                this.score = 0;
+            },
+        },
+        mounted() {
+            this.fetchQuestions();
+        },
+    }).use(vuetify).mount('#app');
+</script>
+
+</body>
+</html>

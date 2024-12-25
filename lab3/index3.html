@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <div id="myapp" class="container p-4"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.state = {
+            questions: [
+            {
+                "question": "น้ำมีสถานะอะไรบ้าง?",
+                "choices": ["ของแข็ง", "ของเหลว", "แก๊ส", "ทั้งหมดที่กล่าวมา"],
+                "answer": 3
+            },
+            {
+                "question": "แสงเดินทางเป็นเส้นอะไร?",
+                "choices": ["เส้นโค้ง", "เส้นตรง", "เส้นวงกลม", "เส้นซิกแซก"],
+                "answer": 1
+            },
+            {
+                "question": "สิ่งใดต่อไปนี้เป็นพืช?",
+                "choices": ["สุนัข", "แมว", "มะม่วง", "ปลาทอง"],
+                "answer": 2
+            },
+            {
+                "question": "อวัยวะใดใช้ในการหายใจ?",
+                "choices": ["ปอด", "ตับ", "หัวใจ", "กระเพาะอาหาร"],
+                "answer": 0
+            },
+            {
+                "question": "ดวงอาทิตย์เป็นอะไร?",
+                "choices": ["ดาวเคราะห์", "ดาวฤกษ์", "ดาวเทียม", "ดาวตก"],
+                "answer": 1
+            },
+            {
+                "question": "น้ำแข็งเกิดจากอะไร?",
+                "choices": ["น้ำที่เย็นจัด", "แก๊สที่เย็นจัด", "ของเหลวร้อน", "น้ำมัน"],
+                "answer": 0
+            },
+            {
+                "question": "เสียงเกิดจากอะไร?",
+                "choices": ["การสั่นสะเทือน", "ความเร็วแสง", "ความร้อน", "น้ำ"],
+                "answer": 0
+            },
+            {
+                "question": "ส่วนใดของต้นไม้ที่ใช้สังเคราะห์แสง?",
+                "choices": ["ราก", "ลำต้น", "ใบ", "ดอก"],
+                "answer": 2
+            },
+            {
+                "question": "มนุษย์ใช้ประสาทสัมผัสใดในการมองเห็น?",
+                "choices": ["ตา", "หู", "จมูก", "ลิ้น"],
+                "answer": 0
+            },
+            {
+                "question": "ไฟฟ้าเกิดจากอะไร?",
+                "choices": ["แรงโน้มถ่วง", "การเคลื่อนที่ของอิเล็กตรอน", "แสงแดด", "น้ำ"],
+                "answer": 1
+            },
+            {
+                "question": "สิ่งใดต่อไปนี้เป็นสัตว์?",
+                "choices": ["แมว", "ต้นมะพร้าว", "ดอกกุหลาบ", "เห็ด"],
+                "answer": 0
+            },
+            {
+                "question": "ดวงจันทร์เป็นอะไร?",
+                "choices": ["ดาวเคราะห์", "ดาวฤกษ์", "ดาวเทียมธรรมชาติ", "ดาวตก"],
+                "answer": 2
+            },
+            {
+                "question": "น้ำมีรสชาติอะไร?",
+                "choices": ["หวาน", "เค็ม", "จืด", "เปรี้ยว"],
+                "answer": 2
+            },
+            {
+                "question": "สัตว์ใดต่อไปนี้วางไข่?",
+                "choices": ["สุนัข", "แมว", "ไก่", "มนุษย์"],
+                "answer": 2
+            },
+            {
+                "question": "ก๊าซใดจำเป็นต่อการหายใจของมนุษย์?",
+                "choices": ["ออกซิเจน", "คาร์บอนไดออกไซด์", "ไนโตรเจน", "ฮีเลียม"],
+                "answer": 0
+            },
+            {
+                "question": "สิ่งใดให้พลังงานแก่สิ่งมีชีวิต?",
+                "choices": ["น้ำ", "อาหาร", "ดวงอาทิตย์", "ออกซิเจน"],
+                "answer": 1
+            },
+            {
+                "question": "กระดูกของมนุษย์ทำหน้าที่อะไร?",
+                "choices": ["ให้พลังงาน", "ปกป้องอวัยวะภายใน", "ช่วยหายใจ", "ช่วยสังเคราะห์แสง"],
+                "answer": 1
+            },
+            {
+                "question": "สัตว์ประเภทใดที่มีขนปกคลุมตัว?",
+                "choices": ["ปลา", "สัตว์เลื้อยคลาน", "นก", "สัตว์เลี้ยงลูกด้วยนม"],
+                "answer": 3
+            },
+            {
+                "question": "สิ่งใดต่อไปนี้เป็นของแข็ง?",
+                "choices": ["น้ำ", "น้ำแข็ง", "อากาศ", "ไอน้ำ"],
+                "answer": 1
+            },
+            {
+                "question": "มนุษย์ต้องการน้ำวันละกี่ลิตรโดยเฉลี่ย?",
+                "choices": ["1 ลิตร", "2 ลิตร", "3 ลิตร", "4 ลิตร"],
+                "answer": 1
+            }
+              // สามารถเพิ่มคำถามได้ตามต้องการ
+            ],
+            currentScreen: "start",  // start, quiz, result
+            answers: {},
+            score: 0
+          };
+        }
+
+        startQuiz = () => {
+          this.setState({
+            currentScreen: "quiz",
+            answers: {},
+            score: 0
+          });
+        };
+
+        handleAnswerChange = (index, answerIndex) => {
+          const { answers } = this.state;
+          answers[index] = answerIndex;
+          this.setState({ answers });
+        };
+
+        calculateScore = () => {
+          const { questions, answers } = this.state;
+          // ตรวจสอบว่าผู้ใช้ตอบครบทุกข้อหรือไม่
+          const answeredQuestions = Object.keys(answers).length;
+          if (answeredQuestions < questions.length) {
+            alert("กรุณาตอบทุกคำถามก่อนตรวจคำตอบ!");
+            return;
+          }
+
+          let score = 0;
+          questions.forEach((question, index) => {
+            if (answers[index] === question.answer) {
+              score++;
+            }
+          });
+          this.setState({ score, currentScreen: "result" });
+        };
+
+        renderStartScreen() {
+          return (
+            <div className="text-center">
+              <h1>แบบทดสอบวิทยาศาสตร์ประถม</h1>
+              <p>แบบทดสอบนี้มีทั้งหมด {this.state.questions.length} ข้อ</p>
+              <button className="btn btn-primary mt-3" onClick={this.startQuiz}>
+                เริ่มทำแบบทดสอบ
+              </button>
+            </div>
+          );
+        }
+
+        renderQuizScreen() {
+          return (
+            <div>
+              <form>
+                {this.state.questions.map((question, index) => (
+                  <div key={index} className="mb-4">
+                    <p><strong>คำถาม {index + 1}:</strong> {question.question}</p>
+                    {question.choices.map((choice, choiceIndex) => (
+                      <div className="form-check" key={choiceIndex}>
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name={`question-${index}`}
+                          value={choiceIndex}
+                          onChange={() => this.handleAnswerChange(index, choiceIndex)}
+                        />
+                        <label className="form-check-label">{choice}</label>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+                <div className="text-center mt-4">
+                  <button type="button" className="btn btn-success" onClick={this.calculateScore}>
+                    ตรวจคำตอบ
+                  </button>
+                </div>
+              </form>
+            </div>
+          );
+        }
+
+        renderResultScreen() {
+          return (
+            <div className="text-center">
+              <h2>ผลคะแนนของคุณ: {this.state.score}/{this.state.questions.length}</h2>
+              <button className="btn btn-primary mt-3" onClick={this.startQuiz}>
+                เริ่มใหม่
+              </button>
+            </div>
+          );
+        }
+
+        render() {
+          return (
+            <div className="card">
+              <div className="card-header">
+                <b>Work3 :</b> แบบทดสอบ ด้วย ReactJS
+              </div>
+              <div className="card-body">
+                {this.state.currentScreen === "start" && this.renderStartScreen()}
+                {this.state.currentScreen === "quiz" && this.renderQuizScreen()}
+                {this.state.currentScreen === "result" && this.renderResultScreen()}
+              </div>
+              <div className="card-footer">
+                By Jirawat Suwitthayasiri <br />
+                College of Computing, Khon Kaen University
+              </div>
+            </div>
+          );
+        }
+      }
+
+      const container = document.getElementById('myapp');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+/* ฟอนต์และพื้นหลัง */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container */
+  .v-container {
+    max-width: 900px;
+    margin: auto;
+    padding-top: 30px;
+  }
+  
+  /* Card Style */
+  .v-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Header */
+  .v-card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    background-color: #3f51b5 !important;
+    padding: 16px;
+    text-align: center;
+  }
+  
+  /* ตาราง */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-top: 10px;
+  }
+  
+  thead {
+    background: #3f51b5;
+    color: white;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+    
+  /* ปุ่ม */
+  .v-btn {
+    margin: 4px;
+    text-transform: none;
+  }
+  
+  .v-btn:hover {
+    background-color: #3f51b5;
+    color: white;
+  }
+  
+  /* ฟอร์มแก้ไข */
+  .v-text-field, .v-combobox {
+    margin-bottom: 15px;
+  }
+  
+  .v-card[v-if="editmode"] {
+    background-color: #f8f9fa;
+    border-left: 5px solid #3f51b5;
+    padding: 20px;
+  }
+  
+  /* Avatar และ User Info */
+  .v-avatar img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .user-info {
+    font-size: 0.9rem;
+    color: #333;
+    padding-left: 10px;
+  }
+  
+  /* Footer */
+  .text-center {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  /* Pop-up Notification */
+  .popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #3f51b5;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;  /* เริ่มต้นซ่อน */
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Pop-up Animation */
+  @keyframes fadein {
+    from { opacity: 0; top: 0; }
+    to { opacity: 1; top: 20px; }
+  }
+  
+  @keyframes fadeout {
+    from { opacity: 1; top: 20px; }
+    to { opacity: 0; top: 0; }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .v-container {
+      padding: 10px;
+    }
+    
+    .v-card-title {
+      font-size: 1.2rem;
+    }
+  
+    table {
+      font-size: 0.9rem;
+    }
+  }
+  

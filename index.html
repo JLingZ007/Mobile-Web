@@ -1,24 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+    <style>
+      /* รีเซ็ตค่าเริ่มต้น */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ฟอนต์และพื้นหลัง */
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.8;
+        padding: 40px 20px;
+      }
+
+      /* ส่วน Header */
+      header {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        background-color: #fff;
+      }
+
+      /* ชื่อวิชา */
+      header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #222;
+      }
+
+      /* ลิสต์งาน */
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px 0;
+      }
+
+      /* ลิงก์งาน */
+      ul li {
+        margin-bottom: 10px;
+      }
+
+      ul li a {
+        text-decoration: none;
+        color: #222;
+        padding: 10px 15px;
+        display: block;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      /* เอฟเฟกต์เมื่อ hover */
+      ul li a:hover {
+        background-color: #222;
+        color: #fff;
+      }
+
+      /* หัวข้อ About Me */
+      h2 {
+        font-size: 1.3rem;
+        margin-top: 30px;
+        color: #444;
+        text-align: center;
+      }
+
+      /* ข้อมูลส่วนตัว */
+      p {
+        margin-top: 10px;
+        padding: 15px;
+        text-align: center;
+        background-color: #fafafa;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        color: #555;
+        font-size: 1rem;
+      }
+
+      /* ทำให้ Responsive */
+      @media (max-width: 600px) {
+        body {
+          padding: 20px 10px;
+        }
+
+        header h1 {
+          font-size: 1.4rem;
+        }
+
+        ul li a {
+          font-size: 0.95rem;
+          padding: 8px 12px;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <header>
-        <h1>รายวิชา SC310006 Mobile and Web Application Development</h1>
-        <ul>
-            <li><a href="./lab1/index.html">งานที่ 1</a></li>
-            <li><a href="./lab2/index2.html">งานที่ 2</a></li>
-            <li><a href="./lab3/index3.html">งานที่ 3</a></li>
-            <li><a href="./lab4/index.html">งานที่ 4</a> </li>
-            <li><a href="./lab5/index.html">งานที่ 5</a> </li>
-            <li><a href=""></a>งานที่ </li>
-            <li><a href=""></a>งานที่ </li>
-        </ul>
-        <h2>About me</h2>
-        <p>นายจิราวัฒน์ สุวิทยะศิริ 653380123-6 คณะวิทยลัยการคอมพิวเตอร์ สาขาวิทยาการคอมพิวเตอร์</p>
+      <h1>รายวิชา SC310006 Mobile and Web Application Development</h1>
+      <ul>
+        <li><a href="./lab1/index.html">งานที่ 1</a></li>
+        <li><a href="./lab2/index2.html">งานที่ 2</a></li>
+        <li><a href="./lab3/index3.html">งานที่ 3</a></li>
+        <li><a href="./lab4/index.html">งานที่ 4</a></li>
+        <li><a href="./lab5/index.html">งานที่ 5</a></li>
+        <li><a href="./lab6/work6_vue.html">งานที่ 6</a></li>
+        <li><a href=""></a>งานที่</li>
+      </ul>
+      <h2>About me</h2>
+      <p>
+        นายจิราวัฒน์ สุวิทยะศิริ 653380123-6 คณะวิทยาลัยการคอมพิวเตอร์
+        สาขาวิทยาการคอมพิวเตอร์
+      </p>
     </header>
-</body>
+  </body>
 </html>
